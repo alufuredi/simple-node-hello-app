@@ -1,6 +1,7 @@
 /*
+ * Simple API that acepts requests on localhost:3000/hello
+ * and says hello.
  * Primary file for the API
- *
 **/
 
 // Dependencies
@@ -18,10 +19,10 @@ const server = http.createServer((req, res)=>{
     const trimmedPath = path.replace(/^\/+|\/+$/g,'')
 
     // choose handler the request should go to. If handler not found, the notFound handler should be used
-    const chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ?  router[trimmedPath] : handlers.notFound
+    const chosenHandlr = typeof(router[trimmedPath]) !== 'undefined' ?  router[trimmedPath] : handlers.notFound
 
     // route to the choosen handler
-    chosenHandler((statusCode, payload)=>{
+    chosenHandlr((statusCode, payload)=>{
 
         // check statusCode is valid or default to 200
         statusCode = typeof(statusCode)==='number' ? statusCode : 200
